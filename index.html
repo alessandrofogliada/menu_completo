@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Digitale</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="logo">🍽️ Ristorante Demo</div>
+  <nav>
+    <button class="menu-switch" data-menu="cibo">Menù</button>
+    <button class="menu-switch" data-menu="bevande">Bevande</button>
+  </nav>
+</header>
+
+<main>
+  <button class="menu-switch" data-menu="Antipasti">Antipasti</button>
+  <button class="menu-switch" data-menu="Primi">Primi</button>
+  <button class="menu-switch" data-menu="Secondi">Secondi</button>
+  <button class="menu-switch" data-menu="Dolci">Dolci</button>
+  <button class="menu-switch" data-menu="Bevande">Bevande</button>
+
+  <div id="menu-container"></div>
+  <div id="filtri">
+    <button data-filter="vegetariano">🥦 Vegetariano</button>
+    <button data-filter="vegano">🥕 Vegano</button>
+    <button data-filter="glutenfree">🌾 Senza Glutine</button>
+    <button data-filter="piccante">🌶️ Piccante</button>
+    <button data-filter="reset">🔁 Reset</button>
+  </div>
+</main>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
