@@ -4,36 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Menu Digitale</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <div class="logo">🍽️ Ristorante Demo</div>
-  <nav>
-    <button class="menu-switch" data-menu="cibo">Menù</button>
-    <button class="menu-switch" data-menu="bevande">Bevande</button>
-  </nav>
+<header class="text-center py-3 bg-light">
+  <h1>🍽️ Ristorante Demo</h1>
 </header>
 
-<main>
-  <button class="menu-switch" data-menu="Antipasti">Antipasti</button>
-  <button class="menu-switch" data-menu="Primi">Primi</button>
-  <button class="menu-switch" data-menu="Secondi">Secondi</button>
-  <button class="menu-switch" data-menu="Dolci">Dolci</button>
-  <button class="menu-switch" data-menu="Bevande">Bevande</button>
+<main class="container mt-4">
 
-  <div id="menu-container"></div>
-  <div id="filtri">
-    <button data-filter="vegetariano">🥦 Vegetariano</button>
-    <button data-filter="vegano">🥕 Vegano</button>
-    <button data-filter="glutenfree">🌾 Senza Glutine</button>
-    <button data-filter="piccante">🌶️ Piccante</button>
-    <button data-filter="reset">🔁 Reset</button>
+  <div class="text-center mb-3">
+    <button class="menu-switch btn btn-primary mx-1" data-menu="cibo">Menù</button>
+    <button class="menu-switch btn btn-secondary mx-1" data-menu="Bevande">Bevande</button>
   </div>
-</main>
 
-<script src="js/config.js"></script>
-<script src="js/main.js"></script>
+  <div id="menuSezioni" style="display: none;" class="text-center mb-3">
+    <button class="menu-switch btn btn-outline-primary mx-1" data-menu="Antipasti">Antipasti 🥗</button>
+    <button class="menu-switch btn btn-outline-primary mx-1" data-menu="Primi">Primi 🍝</button>
+    <button class="menu-switch btn btn-outline-primary mx-1" data-menu="Secondi">Secondi 🥩</button>
+    <button class="menu-switch btn btn-outline-primary mx-1" data-menu="Dolci">Dolci 🍰</button>
+  </div>
+
+  <div id="filtri-cibo" style="display: none;" class="text-center mb-3">
+    <button data-filter="glutenfree" class="btn btn-warning mx-1">🌾 Senza Glutine</button>
+    <button data-filter="lattosiofree" class="btn btn-warning mx-1">🥛 Senza Lattosio</button>
+    <button data-filter="vegetariano" class="btn btn-warning mx-1">🥦 Vegetariano</button>
+    <button data-filter="vegano" class="btn btn-warning mx-1">🥕 Vegano</button>
+    <button data-filter="piccante" class="btn btn-warning mx-1">🌶️ Piccante</button>
+    <button data-filter="reset" class="btn btn-danger mx-1">🔁 Reset</button>
+  </div>
+
+  <div id="filtri-bevande" style="display: none;" class="text-center mb-3">
+    <button data-filter="alcolico" class="btn btn-info mx-1">🍷 Alcolico</button>
+    <button data-filter="analcolico" class="btn btn-info mx-1">🥤 Analcolico</button>
+    <button data-filter="reset" class="btn btn-danger mx-1">🔁 Reset</button>
+  </div>
+
+  <div id="menu-container" class="row"></div>
+
+</main>
+<script src="/js/main.js"></script>
 </body>
 </html>
