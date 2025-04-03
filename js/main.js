@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const menuContainer = document.getElementById("menu-container");
+  const loader = document.getElementById("loader");
   const menuSwitchButtons = document.querySelectorAll(".menu-switch");
   const menuSezioni = document.getElementById("menuSezioni");
   const filtriCibo = document.getElementById("filtri-cibo");
@@ -20,11 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   const sheetUrls = {
-   menu: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjPKOa_J9Zdohvg0pwZc-nDRnmyWy_isYn9Bd0TQfxzOLlu6_jfCuq5UV36vrCamiLIlIMNPXCXPdfZ1Ch0mIsRNaMwc1HFOuuNVyNeQdSu4slv-VfFCIw_AWaQqrCFkW2pOiFHn2eMIoKCPRuhTYCu1oHOCnyFvjhSQLPLpGZDpXmhqifTLY1Wjq-1JTLfbpOAb2oZfPpHjlAXLO-omURcWSFNFCbCpAmqJVnNOvf7j_Xmm5KKnQ3UYoHroVDOGTOAW_TZfxgFI2vDEP0lXy_vPNGj6Q&lib=MPqJJs0z37qA-qGw-bJBepz3FZZAEnAtP'
+    menu: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjPKOa_J9Zdohvg0pwZc-nDRnmyWy_isYn9Bd0TQfxzOLlu6_jfCuq5UV36vrCamiLIlIMNPXCXPdfZ1Ch0mIsRNaMwc1HFOuuNVyNeQdSu4slv-VfFCIw_AWaQqrCFkW2pOiFHn2eMIoKCPRuhTYCu1oHOCnyFvjhSQLPLpGZDpXmhqifTLY1Wjq-1JTLfbpOAb2oZfPpHjlAXLO-omURcWSFNFCbCpAmqJVnNOvf7j_Xmm5KKnQ3UYoHroVDOGTOAW_TZfxgFI2vDEP0lXy_vPNGj6Q&lib=MPqJJs0z37qA-qGw-bJBepz3FZZAEnAtP'
   };
 
   let menuData = {};
 
+  // Cambia sezione
   menuSwitchButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const tipo = btn.dataset.menu;
@@ -74,6 +76,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchMenu() {
     const url = sheetUrls["menu"];
+    showLoader();
+
     fetch(url)
       .then(res => res.json())
       .then(data => {
@@ -84,31 +88,54 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch(err => {
         console.error(err);
         menuContainer.innerHTML = "<p>Errore nel caricamento del menu.</p>";
+        hideLoader();
       });
   }
+
+  
 
   function renderMenu() {
     menuContainer.innerHTML = "";
 
     if (!menuData[activeMenu]) {
       menuContainer.innerHTML = "<p>Nessun dato disponibile per questa sezione.</p>";
+      hideLoader();
       return;
     }
 
     const filtered = menuData[activeMenu].filter(item => {
       let ok = true;
-      for (let key in filters) {
-        if (filters[key] && (!item["Categoria"] || !item["Categoria"].toLowerCase().includes(key))) {
+
+      if (sezionePrincipale === "cibo") {
+        ["vegetariano", "vegano", "glutenfree", "piccante", "lattosiofree"].forEach(key => {
+          if (filters[key] && (!item["Categoria"] || !item["Categoria"].toLowerCase().includes(key))) {
+            ok = false;
+          }
+        });
+      }
+
+      if (sezionePrincipale === "bevande") {
+        if (filters.alcolico && (!item["Categoria"] || item["Categoria"].toLowerCase() !== "alcolico")) {
+          ok = false;
+        }
+        if (filters.analcolico && (!item["Categoria"] || item["Categoria"].toLowerCase() !== "analcolico")) {
           ok = false;
         }
       }
+
       return ok;
     });
 
     if (filtered.length === 0) {
-      menuContainer.innerHTML = "<p>Nessun piatto corrispondente ai filtri selezionati.</p>";
+      menuContainer.innerHTML = "";
+      document.getElementById("messaggio-filtri").textContent = "Nessun risultato trovato con i filtri selezionati.";
+      document.getElementById("messaggio-filtri").style.display = "block";
+      hideLoader();
       return;
+    } else {
+      document.getElementById("messaggio-filtri").style.display = "none";
     }
+    
 
     filtered.forEach(item => {
       const div = document.createElement("div");
@@ -125,6 +152,17 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       menuContainer.appendChild(div);
     });
+
+    hideLoader();
+  }
+
+  function showLoader() {
+    loader.style.display = "block";
+    menuContainer.style.display = "none";
+  }
+
+  function hideLoader() {
+    loader.style.display = "none";
+    menuContainer.style.display = "flex"; // o block
   }
 });
-
