@@ -38,3 +38,39 @@ nav button {
   width: 100%;
   border-radius: 8px;
 }
+
+.infoNoDati{
+  background-color: white;
+  height: auto;
+  width: 90%;
+  font-size: 25px;
+  text-align: center;
+}
+
+.icon{
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.fa-instagram{
+  background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  color: white;
+  border-radius: 25%;
+}
+
+.fa-facebook{
+  background-color: white;
+  color: blue;
+  border-radius: 25%;
+}
+
+.fa-whatsapp{
+  background-color: green;
+  color: white;
+  border-radius: 25%;
+}
+
+footer{
+  background-color: #000000;
+  height: 60px;
+}
