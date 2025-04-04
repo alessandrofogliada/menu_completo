@@ -315,9 +315,9 @@ document.addEventListener("DOMContentLoaded", function () {
       div.className = "menu-item col-md-4";
   
       div.innerHTML = `
-        <div class="card h-100">
-          ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top" alt="${item["Nome piatto"]}">` : ""}
+        <div class="card h-100 flex-column">
           <div class="card-body">
+            ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top" alt="${item["Nome piatto"]}">` : ""}
             <h5 class="card-title">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
             <p class="card-text">Ingredienti: ${item["Ingredienti"]}</p>
 <p class="card-text">€${item["Prezzo"]}</p>

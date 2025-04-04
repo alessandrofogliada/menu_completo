@@ -53,6 +53,7 @@ header {
   margin-top: 2rem;
 }
 
+
 .menu-card {
   background: white;
   color: #dc2743;
@@ -211,9 +212,13 @@ button:active {
 
 .menu-switch {
   border-radius: 20px;
-  padding: 0.5rem 1.2rem;
+  min-height: 50px;
   font-size: 16px;
   font-weight: bold;
+  white-space: normal;
+  word-break: break-word;
+  text-align: center;
+  display: block;
 }
 
 .menu-switch.active {
