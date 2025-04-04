@@ -76,16 +76,17 @@
   <div id="home-screen" class="text-center">
     <div class="mb-4">
       <h2 style="font-size: 3rem;">🍽️</h2>
-      <h1 class="fw-bold mb-3" style="font-size: 3rem;">Benvenuto!</h1>
-      <p style="font-size: 20px;">Scopri il nostro menù digitale</p>
+      <h1 class="fw-bold mb-3" style="font-size: 3rem;" data-menu="benvenuto">Benvenuto!</h1>
+      <p style="font-size: 20px;" data-menu="scopriMenu">Scopri il nostro menù digitale</p>
     </div>
 
     <div class="d-flex justify-content-evenly">
       <button class="menu-switch welcome-button" data-menu="cibo">
         <i class="fa-solid fa-utensils"></i><br>
-        <span>Menù</span>
+        <span data-menu="cibo">Menù</span>
       </button>
-      <button class="menu-switch welcome-button" data-menu="Bevande">
+      
+      <button class="menu-switch welcome-button" data-menu="Bevande" >
         <i class="fa-solid fa-wine-glass-alt"></i>
         <span>Bevande</span>
       </button>
@@ -113,17 +114,17 @@
 
 <nav class="bottom-nav" style="   background-color: #f3f3f3;
 ">
-  <button class="nav-btn menu-switch" data-menu="cibo">
+  <button class="nav-btn menu-switch" >
     <i class="fa-solid fa-utensils"></i>
-    <span>Menù</span>
+    <span data-menu="menu">Menù</span>
   </button>
-  <button class="nav-btn menu-switch" data-menu="Bevande">
+  <button class="nav-btn menu-switch" >
     <i class="fa-solid fa-wine-glass-alt"></i>
-    <span>Bevande</span>
+    <span data-menu="Bevande">Bevande</span>
   </button>
   <button class="nav-btn" id="btn-lang-toggle">
     <i class="fa-solid fa-globe"></i>
-    <span>Lingua</span>
+    <span data-menu="lingua">Lingua</span>
   </button>
 </nav>
 

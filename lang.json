@@ -17,7 +17,10 @@
       "prezzo": "Prezzo",
       "ingredienti": "Ingredienti",
       "noMatch": "Nessun risultato trovato con i filtri selezionati.",
-      "noDati": "⬆️ Selezionare uno delle liste qui sopra "
+      "noDati": "⬆️ Selezionare uno delle liste qui sopra ",
+      "benvenuto": "Benvenuto!",
+      "scopriMenu": "Scopri il nostro menù digitale",
+      "lingua": "Lingua"
     },
     "en": {
       "menu": "Menu",
@@ -37,7 +40,11 @@
       "prezzo": "Price",
       "ingredienti": "Ingredients",
       "noMatch": "No items match the selected filters.",
-      "noDati": "⬆️ Select one of the lists above "
+      "noDati": "⬆️ Select one of the lists above ",
+      "benvenuto": "Welcome!",
+      "scopriMenu": "Discover our digital menu",
+      "lingua": "Language"
+
     },
     "de": {
       "menu": "Menü",
@@ -57,7 +64,11 @@
       "prezzo": "Preis",
       "ingredienti": "Zutaten",
       "noMatch": "Keine Ergebnisse für die ausgewählten Filter.",
-      "noDati": "⬆️ Wählen Sie eine der oben genannten Listen "
+      "noDati": "⬆️ Wählen Sie eine der oben genannten Listen ",
+      "benvenuto": "Willkommen!",
+      "scopriMenu": "Entdecken Sie unser digitales Menü",
+      "lingua": "Sprache"
+
     }
   }
   

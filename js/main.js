@@ -73,13 +73,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 🔄 Traduce tutti i testi visibili
   function translateUI() {
-    document.querySelector('[data-menu="cibo"]').textContent = langData[lang].menu;
-    document.querySelector('[data-menu="Bevande"]').textContent = langData[lang].bevande;
+
+    document.querySelectorAll('[data-menu="Bevande"]').forEach(el => {
+      el.textContent = langData[lang].bevande;
+    });
+
+    document.querySelectorAll('[data-menu="menu"]').forEach(el => {
+      el.textContent = langData[lang].menu;
+    });
+
+    document.querySelectorAll('[data-menu="lingua"]').forEach(el => {
+      el.textContent = langData[lang].lingua;
+    });
+  
     document.querySelector('[data-menu="Antipasti"]').textContent = langData[lang].antipasti;
     document.querySelector('[data-menu="Primi"]').textContent = langData[lang].primi;
     document.querySelector('[data-menu="Secondi"]').textContent = langData[lang].secondi;
     document.querySelector('[data-menu="Dolci"]').textContent = langData[lang].dolci;
-
+    document.querySelector('[data-menu="benvenuto"]').textContent = langData[lang].benvenuto;
+    document.querySelector('[data-menu="scopriMenu"]').textContent = langData[lang].scopriMenu;
 
     // 🥗 Traduzione dei filtri CIBO
     const ciboFilters = {
