@@ -138,7 +138,8 @@ document.addEventListener("DOMContentLoaded", function () {
         showLoader();         
         fetchMenu();
       } else {
-        showLoader();         
+        showLoader();  
+        renderConsigliChef();        
         renderMenu();
       }
       
@@ -165,20 +166,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function fetchMenu() {
     const url = sheetUrls["menu"];
     showLoader();
-
+  
     fetch(url)
       .then(res => res.json())
       .then(data => {
         menuData = data;
         attachFilterListeners();
         renderMenu();
+  
+        // Aspetta che DOM sia visibile prima di popolare i consigli
+        setTimeout(() => {
+          renderConsigliChef();
+        }, 100); // leggero delay per sicurezza
       })
       .catch(err => {
         console.error(err);
-        menuContainer.innerHTML ="<p>Errore nel caricamento del menu.</p>";
+        menuContainer.innerHTML = "<p>Errore nel caricamento del menu.</p>";
         hideLoader();
       });
   }
+  
 
   // 🖼️ Visualizza i piatti/elementi filtrati e tradotti
   function renderMenu() {
@@ -259,6 +266,66 @@ document.addEventListener("DOMContentLoaded", function () {
 
     hideLoader();
   }
+
+  // 🧑‍🍳 Rende visibili i piatti consigliati
+  function renderConsigliChef() {
+    const container = document.getElementById("chef-items");
+    const section = document.getElementById("consigli-chef");
+  
+    if (!container || !section) {
+      console.warn("⚠️ Elementi DOM per consigli dello chef non trovati!");
+      return;
+    }
+  
+    container.innerHTML = "";
+    const consigliati = [];
+  
+    Object.values(menuData).forEach(categoria => {
+      const piatti = categoria.filter(item => {
+        console.log("🔍 Voce:", item["Nome piatto"], "consigliato:", item["Consigliato"]);
+        return item["Consigliato"] && item["Consigliato"].toLowerCase().trim() === "si";
+      });
+      consigliati.push(...piatti);
+    });
+    
+  
+    console.log("👉 Piatti consigliati trovati:", consigliati);
+  
+    if (consigliati.length === 0) {
+      section.style.display = "none";
+      return;
+    }
+  
+    section.style.display = "block";
+  
+    consigliati.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "menu-item col-md-4";
+  
+      div.innerHTML = `
+        <div class="card h-100">
+          ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top" alt="${item["Nome piatto"]}">` : ""}
+          <div class="card-body">
+            <h5 class="card-title">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
+            <p class="card-text">Ingredienti: ${item["Ingredienti"]}</p>
+<p class="card-text">€${item["Prezzo"]}</p>
+
+          </div>
+        </div>
+      `;
+  
+      container.appendChild(div);
+    });
+  }
+  
+  menuSwitchButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      menuSwitchButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+  
+
 
   // ✅ Nasconde contenuto e mostra loader
 
