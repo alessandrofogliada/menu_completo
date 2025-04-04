@@ -21,16 +21,9 @@
     <button class="btn btn-outline-dark mx-1" data-lang="en">🇬🇧 EN</button>
     <button class="btn btn-outline-dark mx-1" data-lang="de">🇩🇪 DE</button>
   </div>
-  
-
 </header>
 
 <main class="container mt-4">
-
-  <div class="text-center mb-3">
-    <button class="menu-switch btn btn-primary mx-1" data-menu="cibo">Menù</button>
-    <button class="menu-switch btn btn-secondary mx-1" data-menu="Bevande">Bevande</button>
-  </div>
 
   <div id="menuSezioni" style="display: none;" class="text-center mb-3">
     <button class="menu-switch btn btn-outline-primary mx-1" data-menu="Antipasti">Antipasti 🥗</button>
@@ -40,55 +33,80 @@
   </div>
 
   <div id="filtri-cibo" style="display: none;" class="text-center mb-3 flex-wrap ">
-    <button data-filter="glutenfree" class="btn btn-warning mx-1 mb-1">🌾 Senza Glutine</button>
-    <button data-filter="lattosiofree" class="btn btn-warning mx-1 mb-1">🥛 Senza Lattosio</button>
+    <button data-filter="glutenfree" class="btn btn mx-1 mb-1" style="background-color: darkkhaki">🌾 Senza Glutine</button>
+    <button data-filter="lattosiofree" class="btn btn-primary mx-1 mb-1">🥛 Senza Lattosio</button>
     <button data-filter="vegetariano" class="btn btn-warning mx-1 mb-1">🥦 Vegetariano</button>
-    <button data-filter="vegano" class="btn btn-warning mx-1 mb-1">🥕 Vegano</button>
-    <button data-filter="piccante" class="btn btn-warning mx-1 mb-1">🌶️ Piccante</button>
-    <button data-filter="reset" class="btn btn-danger mx-1 mb-1">🔁 Reset</button>
+    <button data-filter="vegano" class="btn btn-success mx-1 mb-1">🥕 Vegano</button>
+    <button data-filter="piccante" class="btn btn-danger mx-1 mb-1">🌶️ Piccante</button>
+    <button data-filter="reset" class="btn btn-info mx-1 mb-1">🔁 Reset</button>
   </div>
 
   <div id="filtri-bevande" style="display: none;" class="text-center mb-3">
-    <button data-filter="alcolico" class="btn btn-info mx-1">🍷 Alcolico</button>
-    <button data-filter="analcolico" class="btn btn-info mx-1">🥤 Analcolico</button>
-    <button data-filter="reset" class="btn btn-danger mx-1">🔁 Reset</button>
+    <button data-filter="alcolico" class="btn btn-danger mx-1">🍷 Alcolico</button>
+    <button data-filter="analcolico" class="btn btn-primary mx-1">🥤 Analcolico</button>
+    <button data-filter="reset" class="btn btn-info mx-1">🔁 Reset</button>
   </div>
 
 
      <!-- loader -->
-
  
-  <div id="loader" style="display: none; text-align: center; margin-bottom: 2rem;">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Caricamento...</span>
+     <div id="loader" style="display: none; text-align: center; margin-bottom: 2rem;">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Caricamento...</span>
+      </div>
+      <p class="mt-2">Caricamento in corso...</p>
     </div>
-    <p class="mt-2">Caricamento in corso...</p>
-  </div>
+    
   
   <div id="messaggio-filtri" class="text-center fw-bold my-3" style="display: none; color: red; background-color: white;"></div>
 
 
+  <div id="home-screen" class="text-center">
+    <div class="mb-4">
+      <h1 style="font-size: 3rem;">🍽️</h1>
+      <h2 class="fw-bold mb-3">Benvenuto!</h2>
+      <p>Scopri il nostro menù digitale</p>
+    </div>
+  
+    <!-- SOCIAL -->
+    <div class="social-icons mt-4">
+      <a href="https://www.instagram.com/fogliada_alessandro/" target="_blank"><i class=" icon fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/anghi96/" target="_blank"><i class=" icon fab fa-facebook"></i></a>
+      <a href="https://wa.me/393208195521?text=Ciao%2C%20vorrei%20prenotare%20un%20tavolo%20per...%20saremmo..%20" target="_blank"><i class=" icon fab fa-whatsapp"></i></a>
+    </div>
+
+    <!-- CONSIGLI DELLO CHEF  -->
+    <section id="consigli-chef" class="text-center my-4" style="display: none;">
+      <h3 class="section-title">👨‍🍳 Consigli dello Chef</h3>
+      <div class="row justify-content-center"></div>
+    </section>
+            
+  </div>
+
 
   <div id="menu-container" class="row"></div>
 
-
-  <div class="d-flex justify-content-around">
-    <!-- Icone -->
-      <a clas href="https://www.instagram.com/fogliada_alessandro/" target="_blank"><i class=" icon fab fa-instagram"></i></a>
-      <a clas href="https://www.facebook.com/anghi96/" target="_blank"><i class=" icon fab fa-facebook"></i></a>
-      <a clas href="https://wa.me/393208195521?text=Ciao%2C%20vorrei%20prenotare%20un%20tavolo%20per...%20saremmo..%20" target="_blank"><i class=" icon fab fa-whatsapp"></i></a>
-  </div>
-
 </main>
+
+<nav class="bottom-nav" style="   background-color: #f3f3f3;
+">
+  <button class="nav-btn menu-switch" data-menu="cibo">
+    <i class="fa-solid fa-utensils"></i>
+    <span>Menù</span>
+  </button>
+  <button class="nav-btn menu-switch" data-menu="Bevande">
+    <i class="fa-solid fa-wine-glass-alt"></i>
+    <span>Bevande</span>
+  </button>
+  <button class="nav-btn" id="btn-lang-toggle">
+    <i class="fa-solid fa-globe"></i>
+    <span>Lingua</span>
+  </button>
+</nav>
+
 <script src="js/main.js"></script>
 </body>
 
 <footer>
-  <div>
-    <!-- Icone -->
-      <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://wa.me/391234567890" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
 </footer>
 </html>

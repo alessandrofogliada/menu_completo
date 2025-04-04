@@ -1,76 +1,329 @@
+
+/* VARIABILI GLOBALI */
+:root {
+  --primary: #dc2743;
+  --accent: #ffb4c1;
+  --bg-light: #f3f3f3;
+  --bg-dark: #1e1e2f;
+  --text: #222;
+  --border: #ddd;
+}
+
+* {
+  transition: all 0.3s ease;
+}
+
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url(../img/background_menu.webp);
+  box-sizing: border-box;
+  background-color: var(--bg-light);
+  color: var(--text);
 }
+
+
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  background-color: #000000;
+  background-color: var(--primary);
   color: white;
 }
+
+/* SCHERMATA DI BENVENUTO */
+#home-screen {
+  height: 100%;
+  border-radius: 16px;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(135deg, #dc2743, #ff758c);
+  color: white;
+}
+
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.menu-card {
+  background: white;
+  color: #dc2743;
+  border: solid 2px white;
+  border-radius: 20px;
+  padding: 2rem 1rem;
+  width: 140px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+}
+
+.menu-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-icons a {
+  color: white;
+  transition: opacity 0.3s ease;
+}
+
+.social-icons a:hover {
+  opacity: 0.8;
+}
+
+/* CONSIGLI DELLO CHEF */
+
+#consigli-chef {
+  background: #fff4f6;
+  padding: 2rem 1rem;
+  border-radius: 20px;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  color: #dc2743;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.menu-item {
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.menu-item:hover {
+  transform: scale(1.03);
+}
+
+
+
+/* NAV BUTTONS TOP */
 nav button {
   margin-left: 10px;
   padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
-#filtri {
+
+nav button:hover {
+  background-color: #b91e38;
+}
+
+button:active {
+  transform: scale(0.97);
+  opacity: 0.9;
+}
+
+
+/* FILTRI */
+#filtri,
+#filtri-cibo,
+#filtri-bevande {
   margin: 20px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
 }
+
+#filtri button,
+#filtri-cibo button,
+#filtri-bevande button {
+  border: none;
+  padding: 8px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+#filtri button:hover,
+#filtri-cibo button:hover,
+#filtri-bevande button:hover {
+  opacity: 0.8;
+}
+
+/* === CONTENITORE PIATTI === */
 #menu-container {
   padding: 20px;
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
+
+/* === CARD PIATTO === */
 .menu-item {
-  border: 1px solid #ddd;
+  background: white;
+  border: 1px solid var(--border);
   padding: 15px;
-  border-radius: 8px;
-  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
 }
+
+.menu-item:hover {
+  transform: translateY(-4px);
+}
+
 .menu-item img {
   width: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
-.infoNoDati{
+/*  MESSAGGIO NESSUN RISULTATO  */
+.infoNoDati,
+#messaggio-filtri {
   background-color: white;
-  height: auto;
   width: 90%;
-  font-size: 25px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 20px;
   text-align: center;
+  color: var(--primary);
 }
 
-.icon{
-  font-size: 50px;
-  margin-bottom: 15px;
+/* SOCIAL ICONS */
+.icon {
+  font-size: 40px;
+  margin: 10px;
 }
 
-.fa-instagram{
-  background:linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+.fa-instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
   color: white;
-  border-radius: 25%;
+  border-radius: 50%;
+  padding: 10px;
 }
 
-.fa-facebook{
+.fa-facebook {
   background-color: white;
-  color: blue;
-  border-radius: 25%;
+  color: #1877f2;
+  border-radius: 50%;
+  padding: 10px;
 }
 
-.fa-whatsapp{
-  background-color: green;
+.fa-whatsapp {
+  background-color: #25D366;
   color: white;
-  border-radius: 25%;
+  border-radius: 50%;
+  padding: 10px;
 }
 
-footer{
-  background-color: #000000;
-  height: 60px;
+/* BOTTOM NAVBAR */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  text-align: center;
+  color: #555;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn i {
+  font-size: 18px;
+  margin-bottom: 2px;
+  transition: transform 0.2s ease;
+}
+
+.nav-btn:active i {
+  transform: scale(1.2);
+}
+
+.nav-btn.active {
+  color: var(--primary);
+  font-weight: bold;
+  background-color: #fff;
+  box-shadow: inset -2px -2px 5px rgba(255,255,255,0.5),
+              inset 2px 2px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 4px 8px;
+}
+
+/* STYLING BADGE  */
+.badge {
+  font-size: 0.75rem;
+  padding: 0.4em 0.6em;
+  border-radius: 0.4em;
+}
+
+.glutenfree{
+  background-color: darkkhaki;
+}
+
+.badge {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInBadge 0.3s forwards;
+}
+
+@keyframes fadeInBadge {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* LOADER */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: 1000;
+  display: none; /* <-- visibile solo se showLoader() */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+  nav button {
+    font-size: 14px;
+    padding: 0.4rem 0.8rem;
+  }
 }
