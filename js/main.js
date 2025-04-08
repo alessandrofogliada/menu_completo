@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const menuContainer = document.getElementById("menu-container");
   const loader = document.getElementById("loader");
-  const messaggioFiltri = document.getElementById("messaggio-filtri");
+  // const messaggioFiltri = document.getElementById("messaggio-filtri");
   const menuSwitchButtons = document.querySelectorAll(".menu-switch");
   const menuSezioni = document.getElementById("menuSezioni");
   const filtriCibo = document.getElementById("filtri-cibo");
@@ -26,6 +26,9 @@ document.addEventListener("DOMContentLoaded", function () {
     alcolico: false,
     analcolico: false
   };
+
+  updateLangLabel();
+
 
   // URL per recuperare i dati dal foglio Google Sheets
   const sheetUrls = {
@@ -68,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       localStorage.setItem("lang", lang);
       translateUI();
       renderMenu();
+      updateLangLabel();
     });
   });
 
@@ -120,6 +124,17 @@ document.addEventListener("DOMContentLoaded", function () {
       if (btn) btn.textContent = label;
     });
   }
+
+  function updateLangLabel() {
+    const currentLang = localStorage.getItem("lang") || "it";
+    const labelMap = {
+      it: "🇮🇹 Italiano",
+      en: "🇬🇧 English",
+      de: "🇩🇪 Deutsch"
+    };
+    document.querySelector('.dropdown-toggle').textContent = ` ${labelMap[currentLang]}`;
+  }
+  
 
   // 🔘 Gestione del click su pulsanti menù principali e sottosezioni
   menuSwitchButtons.forEach(btn => {
@@ -202,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // 🖼️ Visualizza i piatti/elementi filtrati e tradotti
   function renderMenu() {
     menuContainer.innerHTML = "";
-    messaggioFiltri.style.display = "none";
+    // messaggioFiltri.style.display = "none";
 
     if (!menuData[activeMenu]) {
       menuContainer.innerHTML = `<p class="infoNoDati">${langData[lang].noDati}</p>`;
@@ -230,8 +245,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (filtered.length === 0) {
-      messaggioFiltri.textContent = langData[lang].noMatch;
-      messaggioFiltri.style.display = "block";
+      // messaggioFiltri.textContent = langData[lang].noMatch;
+      // messaggioFiltri.style.display = "block";
       hideLoader();
       return;
     }
@@ -320,7 +335,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top" alt="${item["Nome piatto"]}">` : ""}
             <h5 class="card-title">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
             <p class="card-text">Ingredienti: ${item["Ingredienti"]}</p>
-<p class="card-text">€${item["Prezzo"]}</p>
+            <p class="card-text">€${item["Prezzo"]}</p>
 
           </div>
         </div>
