@@ -32,7 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // URL per recuperare i dati dal foglio Google Sheets
   const sheetUrls = {
-    menu: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjPKOa_J9Zdohvg0pwZc-nDRnmyWy_isYn9Bd0TQfxzOLlu6_jfCuq5UV36vrCamiLIlIMNPXCXPdfZ1Ch0mIsRNaMwc1HFOuuNVyNeQdSu4slv-VfFCIw_AWaQqrCFkW2pOiFHn2eMIoKCPRuhTYCu1oHOCnyFvjhSQLPLpGZDpXmhqifTLY1Wjq-1JTLfbpOAb2oZfPpHjlAXLO-omURcWSFNFCbCpAmqJVnNOvf7j_Xmm5KKnQ3UYoHroVDOGTOAW_TZfxgFI2vDEP0lXy_vPNGj6Q&lib=MPqJJs0z37qA-qGw-bJBepz3FZZAEnAtP'
+    menu: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLjPKOa_J9Zdohvg0pwZc-nDRnmyWy_isYn9Bd0TQfxzOLlu6_jfCuq5UV36vrCamiLIlIMNPXCXPdfZ1Ch0mIsRNaMwc1HFOuuNVyNeQdSu4slv-VfFCIw_AWaQqrCFkW2pOiFHn2eMIoKCPRuhTYCu1oHOCnyFvjhSQLPLpGZDpXmhqifTLY1Wjq-1JTLfbpOAb2oZfPpHjlAXLO-omURcWSFNFCbCpAmqJVnNOvf7j_Xmm5KKnQ3UYoHroVDOGTOAW_TZfxgFI2vDEP0lXy_vPNGj6Q&lib=MPqJJs0z37qA-qGw-bJBepz3FZZAEnAtP',
+    eventi: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiUbPWgIifD__FgyqLTlPSLA3igB0SrtiDE5X_J4ylJzWxog3XQlvx-hhia8O-RPXJv-dP9Iw5Y025QvPIJTdOl0F5uS_X-G8UJAyZJ2O1-tGXpcqqVwMEKkGSLJ_LqyYOOY6f9mt1WT36Q-wJn7Ka5zLUPLB8f1ECqVR-KDdfMvsuLtU_SFX2iQk7EFj8T5whYtFXTRjQBv-6IbZhvr7IT1qZi2XIWjq3GYEX7wYgzno44sRmlDRLH55-a3mtIbehB5FfGZlUIMgSPWOqYXCnDeGHzqw&lib=MCSu3KQchPQyOTU_rZHtkkT3FZZAEnAtP'
   };
 
 
@@ -57,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       langData = data;
       translateUI();
       enableButtons();
+      fetchEventi();
     });
 
   // 🔓 Sblocca i pulsanti di menu dopo che la lingua è caricata
@@ -350,9 +352,46 @@ document.addEventListener("DOMContentLoaded", function () {
       menuSwitchButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
     });
-  });
-  
 
+  });
+
+  function fetchEventi() {
+    const eventiURL = sheetUrls["eventi"];
+    const container = document.getElementById("eventi-container");
+    if (!container) return;
+  
+    fetch(eventiURL)
+      .then(res => res.json())
+      .then(data => {
+        container.innerHTML = ""; // pulizia
+        
+        if (!data || data.length === 0) {
+          container.innerHTML = "<p>Nessun evento in programma.</p>";
+          return;
+        }
+  
+        data.forEach(evento => {
+          const div = document.createElement("div");
+          div.className = "col-md-4 mb-4";
+  
+          div.innerHTML = `
+            <div class="card shadow h-100">
+            ${evento.Immagine ? `<img src="img/${evento.Immagine}" class="card-img-top" alt="${evento.Titolo || "Evento"}">` : ""}
+               <div class="card-body">
+                <h5 class="card-title">${evento.Titolo || "Evento"}</h5>
+                <p class="card-text"><strong>📅 Data:</strong> ${evento.Data}</p>
+              </div>
+            </div>
+          `;
+  
+          container.appendChild(div);
+        });
+      })
+      .catch(err => {
+        console.error("Errore nel caricamento eventi:", err);
+      });
+  }
+  
 
   // ✅ Nasconde contenuto e mostra loader
 
@@ -362,7 +401,6 @@ document.addEventListener("DOMContentLoaded", function () {
     menuContainer.style.display = "none";
   }
   
-
   // ✅ Nasconde loader e mostra contenuto
   function hideLoader() {
     loader.style.display = "none";
