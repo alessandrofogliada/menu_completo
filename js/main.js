@@ -228,13 +228,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // 🖼️ Visualizza i piatti/elementi filtrati e tradotti
   function renderMenu() {
     menuContainer.innerHTML = "";
-    // messaggioFiltri.style.display = "none";
-
-    if (!menuData[activeMenu]) {
-      menuContainer.innerHTML = `<p class="infoNoDati">${langData[lang].noDati}</p>`;
-      hideLoader();
-      return;
-    }
 
     const filtered = menuData[activeMenu].filter(item => {
       let ok = true;
