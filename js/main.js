@@ -78,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
       el.textContent = langData[lang].bevande;
     });
 
-    document.querySelectorAll('[data-menu="menu"]').forEach(el => {
+    document.querySelectorAll('[data-menu="cibo"]').forEach(el => {
       el.textContent = langData[lang].menu;
-    });
+    });    
 
     document.querySelectorAll('[data-menu="lingua"]').forEach(el => {
       el.textContent = langData[lang].lingua;
