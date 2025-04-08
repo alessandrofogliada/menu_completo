@@ -177,7 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
         fetchMenu();
       } else {
         showLoader();  
-        renderConsigliChef();        
         renderMenu();
       }
       
@@ -211,11 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
         menuData = data;
         attachFilterListeners();
         renderMenu();
-  
-        // Aspetta che DOM sia visibile prima di popolare i consigli
-        setTimeout(() => {
-          renderConsigliChef();
-        }, 100); // leggero delay per sicurezza
       })
       .catch(err => {
         console.error(err);
@@ -296,58 +290,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     hideLoader();
-  }
+  } 
 
-  // 🧑‍🍳 Rende visibili i piatti consigliati
-  function renderConsigliChef() {
-    const container = document.getElementById("chef-items");
-    const section = document.getElementById("consigli-chef");
-  
-    if (!container || !section) {
-      console.warn("⚠️ Elementi DOM per consigli dello chef non trovati!");
-      return;
-    }
-  
-    container.innerHTML = "";
-    const consigliati = [];
-  
-    Object.values(menuData).forEach(categoria => {
-      const piatti = categoria.filter(item => {
-        console.log("🔍 Voce:", item["Nome piatto"], "consigliato:", item["Consigliato"]);
-        return item["Consigliato"] && item["Consigliato"].toLowerCase().trim() === "si";
-      });
-      consigliati.push(...piatti);
-    });
-    
-  
-    console.log("👉 Piatti consigliati trovati:", consigliati);
-  
-    if (consigliati.length === 0) {
-      section.style.display = "none";
-      return;
-    }
-  
-    section.style.display = "block";
-  
-    consigliati.forEach(item => {
-      const div = document.createElement("div");
-      div.className = "menu-item col-md-4";
-  
-      div.innerHTML = `
-        <div class="card h-100 flex-column">
-          <div class="card-body">
-            ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top" alt="${item["Nome piatto"]}">` : ""}
-            <h5 class="card-title">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
-            <p class="card-text">Ingredienti: ${item["Ingredienti"]}</p>
-            <p class="card-text">€${item["Prezzo"]}</p>
-
-          </div>
-        </div>
-      `;
-  
-      container.appendChild(div);
-    });
-  }
   
   menuSwitchButtons.forEach(btn => {
     btn.addEventListener("click", () => {
