@@ -20,7 +20,9 @@
       "noDati": "⬆️ Selezionare uno delle liste qui sopra ",
       "benvenuto": "Benvenuto!",
       "scopriMenu": "Scopri il nostro menù digitale",
-      "lingua": "Lingua"
+      "lingua": "Lingua",
+      "data": "📅Data",
+      "eventi": "🎉 Eventi in Programma"
     },
     "en": {
       "menu": "Menu",
@@ -43,8 +45,9 @@
       "noDati": "⬆️ Select one of the lists above ",
       "benvenuto": "Welcome!",
       "scopriMenu": "Discover our digital menu",
-      "lingua": "Language"
-
+      "lingua": "Language",
+      "data": "📅Date",
+      "eventi": "🎉 Scheduled Events"
     },
     "de": {
       "menu": "Menü",
@@ -67,8 +70,9 @@
       "noDati": "⬆️ Wählen Sie eine der oben genannten Listen ",
       "benvenuto": "Willkommen!",
       "scopriMenu": "Entdecken Sie unser digitales Menü",
-      "lingua": "Sprache"
-
+      "lingua": "Sprache",
+      "data": "📅Datum",
+      "eventi": "🎉 Geplante Veranstaltungen"
     }
   }
   

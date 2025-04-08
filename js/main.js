@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
       translateUI();
       renderMenu();
       updateLangLabel();
+      fetchEventi();
     });
   });
 
@@ -92,12 +93,20 @@ document.addEventListener("DOMContentLoaded", function () {
       el.textContent = langData[lang].lingua;
     });
   
-    document.querySelector('[data-menu="Antipasti"]').textContent = langData[lang].antipasti;
-    document.querySelector('[data-menu="Primi"]').textContent = langData[lang].primi;
-    document.querySelector('[data-menu="Secondi"]').textContent = langData[lang].secondi;
-    document.querySelector('[data-menu="Dolci"]').textContent = langData[lang].dolci;
-    document.querySelector('[data-menu="benvenuto"]').textContent = langData[lang].benvenuto;
-    document.querySelector('[data-menu="scopriMenu"]').textContent = langData[lang].scopriMenu;
+    [
+      ["[data-menu='Antipasti']", langData[lang].antipasti],
+      ["[data-menu='Primi']", langData[lang].primi],
+      ["[data-menu='Secondi']", langData[lang].secondi],
+      ["[data-menu='Dolci']", langData[lang].dolci],
+      ["[data-menu='benvenuto']", langData[lang].benvenuto],
+      ["[data-menu='scopriMenu']", langData[lang].scopriMenu],
+      ["[data-menu='eventi']", langData[lang].eventi],
+    ].forEach(([selector, text]) => {
+      const el = document.querySelector(selector);
+      if (el) el.textContent = text;
+    });
+    
+
 
     // 🥗 Traduzione dei filtri CIBO
     const ciboFilters = {
@@ -372,17 +381,20 @@ document.addEventListener("DOMContentLoaded", function () {
   
         data.forEach(evento => {
           const div = document.createElement("div");
-          div.className = "col-md-4 mb-4";
-  
+          const dataObj = new Date(evento.Data);
+          const dataFormattata = dataObj.toLocaleDateString("it-IT");
+          
+          
           div.innerHTML = `
-            <div class="card shadow h-100">
-            ${evento.Immagine ? `<img src="img/${evento.Immagine}" class="card-img-top" alt="${evento.Titolo || "Evento"}">` : ""}
-               <div class="card-body">
+            <div class="card shadow h-100 text-center">
+              ${evento.Immagine ? `<img src="img/${evento.Immagine}" class="card-img-top" alt="${evento.Titolo || "Evento"}">` : ""}
+              <div class="card-body">
                 <h5 class="card-title">${evento.Titolo || "Evento"}</h5>
-                <p class="card-text"><strong>📅 Data:</strong> ${evento.Data}</p>
+                <p class="card-text mb-1"><strong> ${langData[lang].data}:</strong> ${dataFormattata}</p>
               </div>
             </div>
           `;
+          
   
           container.appendChild(div);
         });

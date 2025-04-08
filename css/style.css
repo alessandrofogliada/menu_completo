@@ -339,6 +339,18 @@ button:active {
   }
 }
 
+.event-datetime {
+  font-size: 1rem;
+}
+.event-date {
+  font-weight: bold;
+}
+.event-time {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+
 /* LOADER */
 #loader {
   position: fixed;
