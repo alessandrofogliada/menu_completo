@@ -223,6 +223,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderMenu() {
     menuContainer.innerHTML = "";
 
+    if (!menuData[activeMenu]) {
+      console.warn(`❌ Nessun dato disponibile per la sezione: "${activeMenu}"`);
+      menuContainer.innerHTML = `<p class="text-center mt-3">${langData[lang].noDati || "Nessun dato disponibile."}</p>`;
+      hideLoader();
+      return;
+    }
+  
     const filtered = menuData[activeMenu].filter(item => {
       let ok = true;
 
