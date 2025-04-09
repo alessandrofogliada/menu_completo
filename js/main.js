@@ -15,6 +15,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let lang = localStorage.getItem("lang") || "it";
   let langData = {};
   let menuData = {};
+  let loaderTimeout;
+
 
   // Filtri attivi per categorie
   let filters = {
@@ -409,21 +411,28 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
   
-  
-
-  // ✅ Nasconde contenuto e mostra loader
-
   function showLoader() {
     loader.style.display = "flex";
     document.getElementById("home-screen").style.display = "none";
     menuContainer.style.display = "none";
+  
+    // ⏳ Imposta timeout per fallback
+    loaderTimeout = setTimeout(() => {
+      loader.innerHTML = `
+        <div class="text-danger">
+          <i class="fa-solid fa-triangle-exclamation fa-2x mb-2"></i>
+          <p>Tempo di attesa superato. Riprova per favore.</p>
+        </div>
+      `;
+    }, 10000);
   }
   
-  // ✅ Nasconde loader e mostra contenuto
   function hideLoader() {
+    clearTimeout(loaderTimeout); // ✅ cancella il timeout se carica correttamente
     loader.style.display = "none";
     menuContainer.style.display = "flex";
-  }  
+  }
+  
 });
 
 
