@@ -36,6 +36,24 @@ document.addEventListener("DOMContentLoaded", function () {
     eventi: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiUbPWgIifD__FgyqLTlPSLA3igB0SrtiDE5X_J4ylJzWxog3XQlvx-hhia8O-RPXJv-dP9Iw5Y025QvPIJTdOl0F5uS_X-G8UJAyZJ2O1-tGXpcqqVwMEKkGSLJ_LqyYOOY6f9mt1WT36Q-wJn7Ka5zLUPLB8f1ECqVR-KDdfMvsuLtU_SFX2iQk7EFj8T5whYtFXTRjQBv-6IbZhvr7IT1qZi2XIWjq3GYEX7wYgzno44sRmlDRLH55-a3mtIbehB5FfGZlUIMgSPWOqYXCnDeGHzqw&lib=MCSu3KQchPQyOTU_rZHtkkT3FZZAEnAtP'
   };
 
+  let lastScrollTop = 0;
+  const bottomNav = document.querySelector(".bottom-nav");
+  
+  window.addEventListener("scroll", function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+    if (scrollTop > lastScrollTop) {
+      // Scroll down
+      bottomNav.classList.add("show");
+    } else {
+      // Scroll up
+      bottomNav.classList.remove("show");
+    }
+  
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  });
+  
+
   
 
   document.querySelectorAll(".menu-card").forEach(card => {
