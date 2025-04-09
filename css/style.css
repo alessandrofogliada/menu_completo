@@ -350,6 +350,70 @@ button:active {
   color: gray;
 }
 
+.filter-panel {
+  background-color: #fff;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.filter-category {
+  margin-bottom: 1rem;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-chip {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #f8f9fa;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.glutenfree.active {
+  background-color: darkkhaki ;
+  color: white;
+  border-color: darkkhaki;
+}
+
+.lattosiofree.active {
+  background-color: #0d6efd;
+  color: white;
+  border-color: #0d6efd;
+}
+
+
+.vegetariano.active {
+  background-color: rgb(255, 193, 7);
+  color: white;
+  border-color:  rgb(255, 193, 7);
+}
+
+
+.vegano.active {
+  background-color: #13b504;
+  color: white;
+  border-color: #13b504;
+}
+
+
+.piccante.active {
+  background-color: red;
+  color: white;
+  border-color: red;
+}
+
+
+
+
 
 /* LOADER */
 #loader {

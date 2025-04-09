@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     eventi: 'https://script.googleusercontent.com/macros/echo?user_content_key=AehSKLiUbPWgIifD__FgyqLTlPSLA3igB0SrtiDE5X_J4ylJzWxog3XQlvx-hhia8O-RPXJv-dP9Iw5Y025QvPIJTdOl0F5uS_X-G8UJAyZJ2O1-tGXpcqqVwMEKkGSLJ_LqyYOOY6f9mt1WT36Q-wJn7Ka5zLUPLB8f1ECqVR-KDdfMvsuLtU_SFX2iQk7EFj8T5whYtFXTRjQBv-6IbZhvr7IT1qZi2XIWjq3GYEX7wYgzno44sRmlDRLH55-a3mtIbehB5FfGZlUIMgSPWOqYXCnDeGHzqw&lib=MCSu3KQchPQyOTU_rZHtkkT3FZZAEnAtP'
   };
 
+  
 
   document.querySelectorAll(".menu-card").forEach(card => {
     card.addEventListener("click", () => {
@@ -151,26 +152,33 @@ document.addEventListener("DOMContentLoaded", function () {
   menuSwitchButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const tipo = btn.dataset.menu;
-
+  
+      // Nascondi tutto all'inizio
       filtriCibo.style.display = "none";
       filtriBevande.style.display = "none";
-
+      menuSezioni.style.display = "none"; // 👈 questa è fondamentale!
+  
       if (tipo === "cibo") {
         sezionePrincipale = "cibo";
-        menuSezioni.style.display = "flex";
+        menuSezioni.style.display = "flex";         // 👈 mostra i bottoni Antipasti, Primi, ecc.
+        filtriCibo.style.display = "block";          // 👈 mostra subito anche il filtro
         activeMenu = "Antipasti";
+  
       } else if (tipo === "Bevande") {
         sezionePrincipale = "bevande";
-        menuSezioni.style.display = "none";
         filtriBevande.style.display = "flex";
         activeMenu = "Bevande";
+  
       } else {
         activeMenu = tipo;
+  
         if (sezionePrincipale === "cibo") {
-          filtriCibo.style.display = "flex";
+          filtriCibo.style.display = "block";
+        } else {
+          filtriCibo.style.display = "none";
         }
       }
-
+  
       if (!datiCaricatiMenu) {
         datiCaricatiMenu = true;
         showLoader();         
@@ -179,25 +187,44 @@ document.addEventListener("DOMContentLoaded", function () {
         showLoader();  
         renderMenu();
       }
-      
     });
   });
+  
 
   // 🎯 Attiva/disattiva i filtri
   function attachFilterListeners() {
     const allFilterButtons = document.querySelectorAll("#filtri-cibo button, #filtri-bevande button");
+  
     allFilterButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         const type = btn.dataset.filter;
+  
         if (type === "reset") {
-          for (let key in filters) filters[key] = false;
+          // 1. Reset logico dei filtri
+          for (let key in filters) {
+            filters[key] = false;
+          }
+  
+          // 2. Reset visivo dei bottoni
+          document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.classList.remove('active');
+          });
+  
         } else {
+          // Toggle logico
           filters[type] = !filters[type];
+  
+          // Toggle visivo (aggiunge o rimuove 'active')
+          btn.classList.toggle('active');
+          console.log(btn.classList); 
+
         }
-        renderMenu();
+  
+        renderMenu(); // Aggiorna la lista dei piatti
       });
     });
   }
+  
 
   // 📥 Recupera il menu dal Google Sheet
   function fetchMenu() {
