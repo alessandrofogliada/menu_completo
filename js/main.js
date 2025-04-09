@@ -173,9 +173,15 @@ document.addEventListener("DOMContentLoaded", function () {
       const tipo = btn.dataset.menu;
   
       // Nascondi tutto all'inizio
+      // Nascondi i filtri
       filtriCibo.style.display = "none";
       filtriBevande.style.display = "none";
-      menuSezioni.style.display = "none"; // 👈 questa è fondamentale!
+
+      // Nascondi i sottomenù solo se NON stai cliccando un bottone tipo Antipasti ecc.
+      if (btn.dataset.menu === "cibo" || btn.dataset.menu === "Bevande") {
+        menuSezioni.style.display = "none";
+      }
+
   
       if (tipo === "cibo") {
         sezionePrincipale = "cibo";
@@ -357,42 +363,52 @@ document.addEventListener("DOMContentLoaded", function () {
   function fetchEventi() {
     const eventiURL = sheetUrls["eventi"];
     const container = document.getElementById("eventi-container");
+    const eventiLoader = document.getElementById("loader-eventi");
+  
     if (!container) return;
+  
+    // MOSTRA loader
+    eventiLoader.style.display = "block";
+    container.style.display = "none";
   
     fetch(eventiURL)
       .then(res => res.json())
       .then(data => {
-        container.innerHTML = ""; // pulizia
-        
+        container.innerHTML = "";
+  
         if (!data || data.length === 0) {
           container.innerHTML = "<p>Nessun evento in programma.</p>";
-          return;
+        } else {
+          data.forEach(evento => {
+            const div = document.createElement("div");
+            const dataObj = new Date(evento.Data);
+            const dataFormattata = dataObj.toLocaleDateString("it-IT");
+  
+            div.innerHTML = `
+              <div class="card shadow h-100 text-center">
+              ${evento.Immagine ? `<img src="img/${evento.Immagine}" class="card-img-top" alt="${evento.Titolo || "Evento"}">` : ""}
+                <div class="card-body">
+                  <h5 class="card-title">${evento.Titolo || "Evento"}</h5>
+                  <p class="card-text mb-1"><strong> ${langData[lang].data}:</strong> ${dataFormattata}</p>
+                </div>
+              </div>
+            `;
+            container.appendChild(div);
+          });
         }
   
-        data.forEach(evento => {
-          const div = document.createElement("div");
-          const dataObj = new Date(evento.Data);
-          const dataFormattata = dataObj.toLocaleDateString("it-IT");
-          
-          
-          div.innerHTML = `
-            <div class="card shadow h-100 text-center">
-              ${evento.Immagine ? `<img src="img/${evento.Immagine}" class="card-img-top" alt="${evento.Titolo || "Evento"}">` : ""}
-              <div class="card-body">
-                <h5 class="card-title">${evento.Titolo || "Evento"}</h5>
-                <p class="card-text mb-1"><strong> ${langData[lang].data}:</strong> ${dataFormattata}</p>
-              </div>
-            </div>
-          `;
-          
-  
-          container.appendChild(div);
-        });
+        // NASCONDI loader
+        eventiLoader.style.display = "none";
+        container.style.display = "flex";
       })
       .catch(err => {
         console.error("Errore nel caricamento eventi:", err);
+        container.innerHTML = "<p>Errore nel caricamento eventi.</p>";
+        eventiLoader.style.display = "none";
+        container.style.display = "block";
       });
   }
+  
   
 
   // ✅ Nasconde contenuto e mostra loader
@@ -409,3 +425,6 @@ document.addEventListener("DOMContentLoaded", function () {
     menuContainer.style.display = "flex";
   }  
 });
+
+
+

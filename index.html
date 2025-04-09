@@ -103,11 +103,11 @@
 
      <!-- loader -->
  
-     <div id="loader" style="display: none; text-align: center; margin-bottom: 2rem;">
-      <div class="spinner-border text-primary" role="status">
+     <div id="loader" style="display: none; text-align: center; margin-bottom: 2rem; color: #cc2366;">
+      <div class="spinner-border " role="status">
         <span class="visually-hidden">Caricamento...</span>
       </div>
-      <p class="mt-2">Caricamento in corso...</p>
+      <p class="mt-2" style="color: black;">Caricamento in corso...</p>
     </div>
     
 
@@ -143,6 +143,16 @@
 
     <section id="eventi" class="text-center my-4">
       <h3 class="section-title" data-menu="eventi" >🎉 Eventi in Programma</h3>
+
+      <!-- LOADER -->
+      <div id="loader-eventi" style="display: none; text-align: center;" class="my-3">
+        <div class="spinner-border" style="color: #cc2366;" role="status">
+          <span class="visually-hidden" >Caricamento eventi...</span>
+        </div>
+        <p class="mt-2" style="color: #cc2366;">Caricamento eventi in corso...</p>
+      </div>
+      
+
       <div id="eventi-container" class="row justify-content-center"></div>
     </section>
     

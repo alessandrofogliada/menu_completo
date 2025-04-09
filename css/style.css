@@ -447,6 +447,7 @@ button:active {
   flex-direction: column;
 }
 
+
 .fade-in {
   opacity: 0;
   transform: translateY(10px);
@@ -458,6 +459,12 @@ button:active {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+#loader-eventi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
