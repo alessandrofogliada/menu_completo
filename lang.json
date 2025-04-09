@@ -1,7 +1,7 @@
 {
     "it": {
-      "menu": "<i class=\"fa-solid fa-utensils\"></i><br>Menù",
-      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i><br>Bevande", 
+      "menu": "<i class=\"fa-solid fa-utensils\"></i>Menù",
+      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i>Bevande", 
       "antipasti": "Antipasti<br>🥗",
       "primi": "Primi<br>🍝",
       "secondi": "Secondi<br>🥩",
@@ -26,8 +26,8 @@
       "filtroDieta": "Filtra piatti"
     },
     "en": {
-      "menu": "<i class=\"fa-solid fa-utensils\"></i><br>Menù",
-      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i><br>Drinks",
+      "menu": "<i class=\"fa-solid fa-utensils\"></i>Menù",
+      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i>Drinks",
       "antipasti": "Starters<br>🥗",
       "primi": "First Courses<br>🍝",
       "secondi": "Main Courses<br>🥩",
@@ -52,8 +52,8 @@
       "filtroDieta": "Filter dishes"
     },
     "de": {
-      "menu": "<i class=\"fa-solid fa-utensils\"></i><br>Menü",
-      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i><br>Getränke",
+      "menu": "<i class=\"fa-solid fa-utensils\"></i>Menü",
+      "bevande": "<i class=\"fa-solid fa-wine-glass-alt\"></i>Getränke",
       "antipasti": "Vorspeisen<br>🥗",
       "primi": "Erste Gänge<br>🍝",
       "secondi": "Hauptgerichte<br>🥩",
