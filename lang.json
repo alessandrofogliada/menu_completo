@@ -22,7 +22,8 @@
       "scopriMenu": "Scopri il nostro menù digitale",
       "lingua": "Lingua",
       "data": "📅Data",
-      "eventi": "🎉 Eventi in Programma"
+      "eventi": "🎉 Eventi in Programma",
+      "filtroDieta": "Filtra piatti"
     },
     "en": {
       "menu": "Menu",
@@ -47,7 +48,8 @@
       "scopriMenu": "Discover our digital menu",
       "lingua": "Language",
       "data": "📅Date",
-      "eventi": "🎉 Scheduled Events"
+      "eventi": "🎉 Scheduled Events",
+      "filtroDieta": "Filter dishes"
     },
     "de": {
       "menu": "Menü",
@@ -72,7 +74,8 @@
       "scopriMenu": "Entdecken Sie unser digitales Menü",
       "lingua": "Sprache",
       "data": "📅Datum",
-      "eventi": "🎉 Geplante Veranstaltungen"
+      "eventi": "🎉 Geplante Veranstaltungen",
+      "filtroDieta": "Filterschalen"
     }
   }
   

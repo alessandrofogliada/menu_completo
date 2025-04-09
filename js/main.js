@@ -102,6 +102,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ["[data-menu='benvenuto']", langData[lang].benvenuto],
       ["[data-menu='scopriMenu']", langData[lang].scopriMenu],
       ["[data-menu='eventi']", langData[lang].eventi],
+      ["[data-menu='filtroDieta']", langData[lang].filtroDieta],
     ].forEach(([selector, text]) => {
       const el = document.querySelector(selector);
       if (el) el.textContent = text;
