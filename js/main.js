@@ -248,9 +248,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
   
         renderMenu(); // Aggiorna la lista dei piatti
+        updateActiveFiltersUI();
       });
     });
   }
+
+  function updateActiveFiltersUI() {
+    const activeList = document.getElementById("active-filter-list");
+    const wrapper = document.getElementById("active-filters");
+    activeList.innerHTML = "";
+  
+    const labels = {
+      vegetariano: "🥦 " + langData[lang].vegetariano,
+      vegano: "🥕 " + langData[lang].vegano,
+      glutenfree: "🌾 " + langData[lang].glutenfree,
+      lattosiofree: "🥛 " + langData[lang].lattosiofree,
+      piccante: "🌶️ " + langData[lang].piccante,
+      alcolico: "🍷 " + langData[lang].alcolico,
+      analcolico: "🥤 " + langData[lang].analcolico
+    };
+  
+    let count = 0;
+    Object.entries(filters).forEach(([key, attivo]) => {
+      if (attivo) {
+        const badge = document.createElement("span");
+        badge.className = "badge bg-secondary";
+        badge.innerText = labels[key];
+        activeList.appendChild(badge);
+        count++;
+      }
+    });
+  
+    wrapper.style.display = count > 0 ? "block" : "none";
+  }
+  
   
 
   // 📥 Recupera il menu dal Google Sheet
@@ -349,7 +380,7 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
       menuContainer.appendChild(div);
     });
-
+    updateActiveFiltersUI();
     hideLoader();
   } 
 
