@@ -20,6 +20,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: var(--bg-light);
+  background-image: url(/img/background2.webp);
   color: var(--text);
 }
 
@@ -41,7 +42,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #dc2743, #ff758c);
+  background: linear-gradient(135deg, #dc2742b4, #ff758c);
   color: white;
   
 }
@@ -229,13 +230,14 @@ button:active {
 
 .menu-switch {
   border-radius: 20px;
-  min-height: 50px;
+  min-height: 70px;
   font-size: 16px;
   font-weight: bold;
   white-space: normal;
   word-break: break-word;
   text-align: center;
   display: block;
+  background-color: #fff4f6;
 }
 
 .menu-switch.active {

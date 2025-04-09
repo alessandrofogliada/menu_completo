@@ -101,11 +101,11 @@ document.addEventListener("DOMContentLoaded", function () {
   function translateUI() {
 
     document.querySelectorAll('[data-menu="Bevande"]').forEach(el => {
-      el.textContent = langData[lang].bevande;
+      el.innerHTML = langData[lang].bevande;
     });
 
     document.querySelectorAll('[data-menu="cibo"]').forEach(el => {
-      el.textContent = langData[lang].menu;
+      el.innerHTML = langData[lang].menu;
     });    
 
     document.querySelectorAll('[data-menu="lingua"]').forEach(el => {
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
       ["[data-menu='filtroDieta']", langData[lang].filtroDieta],
     ].forEach(([selector, text]) => {
       const el = document.querySelector(selector);
-      if (el) el.textContent = text;
+      if (el) el.innerHTML = text;
     });
     
 
@@ -334,12 +334,12 @@ document.addEventListener("DOMContentLoaded", function () {
       
 
       div.innerHTML = `
-        <div class="card h-100 flex-row">
+        <div class="card h-100 align-items-center">
           ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top w-50" alt="${item["Nome piatto"]}">` : ""}
-            <div class="card-body">
+            <div class="card-body d-flex flex-column align-items-center">
               <h5 class="card-title" style="font-weight:bold">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
               <div class="mb-2">${badgeHTML}</div>
-              <p class="card-text"><strong>${langData[lang].ingredienti}:</strong> ${item[`Ingredienti (${lang})`] || item["Ingredienti"]}</p>
+              <p class="card-text text-center"><strong>${langData[lang].ingredienti}:</strong> ${item[`Ingredienti (${lang})`] || item["Ingredienti"]}</p>
               <p class="card-text"><strong>${langData[lang].prezzo}:</strong> €${item["Prezzo"]}</p>
           </div>
 
