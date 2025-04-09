@@ -345,6 +345,19 @@ i{
   padding: 4px 8px;
 }
 
+.menu-switch, .filter-chip, .btn {
+  transition: all 0.2s ease;
+}
+
+.menu-switch:active, .filter-chip:active {
+  transform: scale(0.95);
+}
+
+.ingredienti-content {
+  transition: all 0.3s ease;
+}
+
+
 /* STYLING BADGE  */
 .badge {
   font-size: 0.75rem;
@@ -366,6 +379,21 @@ i{
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* CARD  */
+
+.menu-item {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

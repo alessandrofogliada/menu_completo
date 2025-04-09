@@ -16,7 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let langData = {};
   let menuData = {};
   let loaderTimeout;
-
+  
+  menuContainer.classList.remove("fade-in");
+  void menuContainer.offsetWidth; // forza il reflow
+  menuContainer.classList.add("fade-in");
+  
 
   // Filtri attivi per categorie
   let filters = {
@@ -286,6 +290,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 📥 Recupera il menu dal Google Sheet
   function fetchMenu() {
+    // ✅ Se i dati sono già presenti, usa la cache
+    if (Object.keys(menuData).length > 0) {
+      renderMenu(); // usa direttamente i dati già caricati
+      return;
+    }
+  
     const url = sheetUrls["menu"];
     showLoader();
   
@@ -302,6 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
         hideLoader();
       });
   }
+  
   
 
   // 🖼️ Visualizza i piatti/elementi filtrati e tradotti
@@ -373,7 +384,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       div.innerHTML = `
         <div class="card h-100 align-items-center">
-          ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top w-50" alt="${item["Nome piatto"]}">` : ""}
+          ${item["Immagine"] ? `<img src="img/${item["Immagine"]}" class="card-img-top w-50 mt-3" alt="${item["Nome piatto"]}" loading="lazy">` : ""}
             <div class="card-body d-flex flex-column align-items-center">
               <h5 class="card-title" style="font-weight:bold">${item[`Nome piatto (${lang})`] || item["Nome piatto"]}</h5>
               <div class="mb-2">${badgeHTML}</div>
