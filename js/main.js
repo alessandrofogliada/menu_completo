@@ -335,11 +335,16 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (filtered.length === 0) {
-      // messaggioFiltri.textContent = langData[lang].noMatch;
-      // messaggioFiltri.style.display = "block";
+      menuContainer.innerHTML = `
+        <div class="text-center mt-4" style="background-color:white; border-radius:15px">
+        <p>${langData[lang].noMatch}</p>
+
+        </div>
+      `;
       hideLoader();
       return;
     }
+    
 
     filtered.forEach(item => {
       const div = document.createElement("div");
@@ -410,8 +415,14 @@ document.addEventListener("DOMContentLoaded", function () {
         container.innerHTML = "";
   
         if (!data || data.length === 0) {
-          container.innerHTML = "<p>Nessun evento in programma.</p>";
-        } else {
+          container.innerHTML = `
+            <div class="text-center my-4">
+              <p style="font-size: 18px;">📅 Nessun evento in programma al momento.</p>
+              <p>Torna a trovarci presto!</p>
+            </div>
+          `;
+        }
+         else {
           data.forEach(evento => {
             const div = document.createElement("div");
             const dataObj = new Date(evento.Data);
