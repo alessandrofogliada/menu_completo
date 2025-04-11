@@ -173,26 +173,22 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
 
-  // 🔘 Gestione del click su pulsanti menù principali e sottosezioni
   menuSwitchButtons.forEach(btn => {
     btn.addEventListener("click", () => {
       const tipo = btn.dataset.menu;
   
       // Nascondi tutto all'inizio
-      // Nascondi i filtri
       filtriCibo.style.display = "none";
       filtriBevande.style.display = "none";
-
-      // Nascondi i sottomenù solo se NON stai cliccando un bottone tipo Antipasti ecc.
+  
       if (btn.dataset.menu === "cibo" || btn.dataset.menu === "Bevande") {
         menuSezioni.style.display = "none";
       }
-
   
       if (tipo === "cibo") {
         sezionePrincipale = "cibo";
-        menuSezioni.style.display = "flex";         // 👈 mostra i bottoni Antipasti, Primi, ecc.
-        filtriCibo.style.display = "block";          // 👈 mostra subito anche il filtro
+        menuSezioni.style.display = "flex";
+        filtriCibo.style.display = "block";
         activeMenu = "Antipasti";
   
       } else if (tipo === "Bevande") {
@@ -210,6 +206,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
   
+      // ✅ Scroll verso l'alto dopo aver impostato la sezione
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+  
       if (!datiCaricatiMenu) {
         datiCaricatiMenu = true;
         showLoader();         
@@ -220,6 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+  
   
 
   // 🎯 Attiva/disattiva i filtri
